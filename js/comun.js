@@ -9,12 +9,27 @@ function escaparTexto(texto) {
 }
 
 function nombreCategoria(slug) {
-    let nombres = { 'mobile-accessories': 'Accesorios', 'impresion-3d': 'Impresión 3D', 'realidad-virtual': 'Realidad virtual', 'perifericos': 'Periféricos', 'camaras': 'Cámaras' };
-    return nombres[slug] || slug.replaceAll('-', ' ');
+    return slug.replaceAll('-', ' ');
+}
+
+function cargarDatos(url, mostrar, estado) {
+    fetch(url)
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('No se pudieron cargar los datos.');
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            mostrar(data);
+        })
+        .catch(function () {
+            estado.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+        });
 }
 
 function formatearPrecio(precio) {
-    return '$ ' + Number(precio).toLocaleString('es-AR');
+    return 'USD ' + Number(precio).toFixed(2);
 }
 
 function crearTarjetas(productos) {
@@ -24,7 +39,7 @@ function crearTarjetas(productos) {
         let producto = productos[i];
         tarjetas += `
             <article>
-                <img src="${escaparTexto(producto.thumbnail)}" alt="${escaparTexto(producto.alt || producto.title)}" loading="lazy">
+                <img src="${escaparTexto(producto.thumbnail)}" alt="${escaparTexto(producto.title)}" loading="lazy">
                 <h3>${escaparTexto(producto.title)}</h3>
                 <p>${escaparTexto(producto.description)}</p>
                 <p class="precio">${formatearPrecio(producto.price)}</p>
@@ -43,7 +58,6 @@ let errorBusqueda = document.querySelector('#error-busqueda');
 formularioBusqueda.addEventListener('submit', function (event) {
     let termino = campoBusqueda.value.trim();
     errorBusqueda.innerText = '';
-    campoBusqueda.setAttribute('aria-invalid', 'false');
 
     if (termino === '') {
         event.preventDefault();
@@ -56,73 +70,44 @@ formularioBusqueda.addEventListener('submit', function (event) {
     }
 
     if (errorBusqueda.innerText !== '') {
-        campoBusqueda.setAttribute('aria-invalid', 'true');
         campoBusqueda.focus();
     }
 });
 
 campoBusqueda.addEventListener('input', function () {
     errorBusqueda.innerText = '';
-    campoBusqueda.setAttribute('aria-invalid', 'false');
 });
 
-// Las categorías y los productos se cargan del catálogo original de Nova Store.
 let listaCategorias = document.querySelector('.lista-categorias');
 let estadoCategorias = document.querySelector('.estado-categorias');
 
-fetch('data/catalogo.json')
-    .then(function (response) {
-        if (!response.ok) {
-            throw new Error('No se pudieron cargar las categorías.');
-        }
-        return response.json();
-    })
-    .then(function (data) {
-        let categorias = data.categories;
-        let enlaces = '';
-        let parametros = new URLSearchParams(location.search);
-        let categoriaActual = parametros.get('categoria');
-
-        for (let i = 0; i < categorias.length; i++) {
-            let categoria = categorias[i];
-            let seleccionada = '';
-            if (location.pathname.endsWith('/category.html') && categoriaActual === categoria.slug) {
-                seleccionada = ' aria-current="page"';
-            }
-            enlaces += `<li><a href="category.html?categoria=${encodeURIComponent(categoria.slug)}"${seleccionada}>${escaparTexto(categoria.name)}</a></li>`;
-        }
-
-        listaCategorias.innerHTML = enlaces;
-        estadoCategorias.innerText = '';
-    })
-    .catch(function (error) {
-        estadoCategorias.innerText = 'No se pudieron cargar las categorías. Recargá la página para volver a intentar.';
-        console.log(error);
-    });
-
-function mostrarErrorCampo(campo, mensaje, texto) {
-    mensaje.innerText = texto;
-    campo.setAttribute('aria-invalid', texto === '' ? 'false' : 'true');
-}
-
-function validarEmail(campo, mensaje) {
-    let texto = '';
-    if (campo.value.trim() === '') {
-        texto = 'El email es obligatorio.';
-    } else if (campo.validity.typeMismatch) {
-        texto = 'Ingresá un email válido.';
+cargarDatos('https://dummyjson.com/products/categories', function (categorias) {
+    let enlaces = '';
+    for (let i = 0; i < categorias.length; i++) {
+        enlaces += `<li><a href="category.html?categoria=${encodeURIComponent(categorias[i].slug)}">${escaparTexto(categorias[i].name)}</a></li>`;
     }
-    mostrarErrorCampo(campo, mensaje, texto);
-    return texto === '';
-}
+    listaCategorias.innerHTML = enlaces;
+    estadoCategorias.innerText = '';
+}, estadoCategorias);
 
-function validarContrasena(campo, mensaje) {
-    let texto = '';
-    if (campo.value.trim() === '') {
-        texto = 'La contraseña es obligatoria.';
-    } else if (campo.value.length < 6) {
-        texto = 'La contraseña debe tener al menos 6 caracteres';
+function validarCuenta() {
+    let email = document.querySelector('#email');
+    let contrasena = document.querySelector('#contrasena').value;
+    let errorEmail = '';
+    let errorContrasena = '';
+
+    if (email.value.trim() === '') {
+        errorEmail = 'El email es obligatorio.';
+    } else if (email.validity.typeMismatch) {
+        errorEmail = 'Ingresá un email válido.';
     }
-    mostrarErrorCampo(campo, mensaje, texto);
-    return texto === '';
+    if (contrasena.trim() === '') {
+        errorContrasena = 'La contraseña es obligatoria.';
+    } else if (contrasena.length < 6) {
+        errorContrasena = 'La contraseña debe tener al menos 6 caracteres';
+    }
+
+    document.querySelector('#error-email').innerText = errorEmail;
+    document.querySelector('#error-contrasena').innerText = errorContrasena;
+    return errorEmail === '' && errorContrasena === '';
 }

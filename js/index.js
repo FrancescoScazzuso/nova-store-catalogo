@@ -1,29 +1,12 @@
-function cargarSeccion(seccion, contenedor, estado) {
-    fetch('data/catalogo.json')
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('No se pudo cargar la sección.');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            let productos = [];
-            for (let i = 0; i < data.products.length; i++) {
-                if (data.products[i].section === seccion) {
-                    productos.push(data.products[i]);
-                }
-            }
-            contenedor.innerHTML = crearTarjetas(productos);
-            estado.innerText = '';
-            if (productos.length === 0) {
-                estado.innerText = 'No hay productos disponibles en esta sección.';
-            }
-        })
-        .catch(function (error) {
-            estado.innerText = 'No se pudieron cargar los productos. Recargá la página para volver a intentar.';
-            console.log(error);
-        });
+function cargarSeccion(categoria, nombre) {
+    let contenedor = document.querySelector('#productos-' + nombre);
+    let estado = document.querySelector('#estado-' + nombre);
+
+    cargarDatos('https://dummyjson.com/products/category/' + categoria + '?limit=10', function (data) {
+        contenedor.innerHTML = crearTarjetas(data.products);
+        estado.innerText = '';
+    }, estado);
 }
 
-cargarSeccion('destacados', document.querySelector('#productos-destacados'), document.querySelector('#estado-destacados'));
-cargarSeccion('nuevos', document.querySelector('#productos-nuevos'), document.querySelector('#estado-nuevos'));
+cargarSeccion('smartphones', 'destacados');
+cargarSeccion('mobile-accessories', 'nuevos');

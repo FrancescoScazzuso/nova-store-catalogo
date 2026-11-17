@@ -13,41 +13,12 @@ body {
     line-height: 1.6;
 }
 
-[hidden] {
-    display: none !important;
-}
-
-button,
-input {
-    font: inherit;
-}
-
-button {
-    padding: 10px 14px;
-    background-color: #9dcaff;
-    color: #08121f;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-button:hover,
-.boton-detalle:hover {
-    background-color: #c4dfff;
-}
-
-input {
-    padding: 10px;
-    border: 1px solid #6f9bc7;
-    border-radius: 4px;
-    background-color: #f4f8ff;
-    color: #08121f;
-    min-width: 0;
-}
-
-input[aria-invalid="true"] {
-    border: 2px solid #ffb6b6;
+[hidden],
+.error:empty,
+.estado:empty,
+.estado-categorias:empty,
+.categorias ul:empty {
+    display: none;
 }
 
 a {
@@ -55,41 +26,43 @@ a {
     overflow-wrap: anywhere;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid #ffdc8b;
-    outline-offset: 4px;
+button,
+input {
+    font: inherit;
+    padding: 10px;
+}
+
+button,
+.boton-detalle {
+    background-color: #9dcaff;
+    color: #08121f;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input {
+    min-width: 0;
+}
+
+header,
+footer {
+    padding: 20px;
+    background-color: #08121f;
+}
+
+header,
+header nav,
+.productos,
+.detalle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 header {
-    padding: 16px 24px;
-    background-color: #08121f;
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px 24px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid #274561;
-}
-
-.logo {
-    width: 220px;
-    height: 85px;
-    object-fit: contain;
-    display: block;
-    max-width: 100%;
-}
-
-header nav {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px 18px;
-    min-width: 0;
 }
 
 header a {
@@ -97,48 +70,42 @@ header a {
     text-decoration: none;
 }
 
-header nav a:hover {
-    text-decoration: underline;
+.logo {
+    width: 220px;
+    height: 85px;
+    object-fit: contain;
 }
 
 .saludo {
-    font-size: 0.85rem;
+    max-width: 260px;
     overflow-wrap: anywhere;
-    max-width: 300px;
 }
 
 .formulario-busqueda {
     flex: 0 1 345px;
-    min-width: 0;
 }
 
-.formulario-busqueda label {
+.formulario-busqueda label,
+.cuenta label,
+.error {
     display: block;
-    font-size: 0.85rem;
-    margin-bottom: 6px;
 }
 
-.campo-busqueda {
+.campo-busqueda,
+.campo-terminos {
     display: flex;
     gap: 8px;
 }
 
-.campo-busqueda input {
+.campo-busqueda input,
+.cuenta input:not([type="checkbox"]),
+.cuenta button {
     width: 100%;
 }
 
 .error {
     color: #ffb6b6;
     font-size: 0.85rem;
-    display: block;
-    margin: 6px 0 0;
-    overflow-wrap: anywhere;
-}
-
-.error:empty,
-.estado:empty,
-.estado-categorias:empty {
-    display: none;
 }
 
 .banner img {
@@ -146,60 +113,42 @@ header nav a:hover {
     display: block;
 }
 
-.banner {
-    margin: 0;
-}
-
 .contenido {
     display: flex;
-    gap: 28px;
-    padding: 28px 24px;
+    gap: 24px;
+    padding: 24px;
     flex: 1;
     width: 100%;
     max-width: 1700px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .categorias {
-    flex: 0 0 220px;
-    min-width: 0;
+    flex: 0 0 200px;
 }
 
-.categorias h2 {
-    font-size: 1.15rem;
-    margin-top: 0;
+.categorias ul,
+article,
+.cuenta {
+    padding: 16px;
+    background-color: #152a43;
+    border: 1px solid #6f9bc7;
 }
 
 .categorias ul {
-    padding: 12px;
-    margin: 0;
-    background-color: #12243a;
-    border: 1px solid #6f9bc7;
-    border-radius: 6px;
     list-style: none;
     max-height: 70vh;
     overflow-y: auto;
 }
 
-.categorias ul:empty {
-    display: none;
-}
-
-.categorias li a {
+.categorias a {
     display: block;
-    padding: 8px;
-    font-size: 0.85rem;
+    padding: 6px 0;
     text-decoration: none;
 }
 
-.categorias li a:hover,
-.categorias [aria-current="page"] {
-    color: white;
-    background-color: #274561;
-    border-radius: 3px;
-}
-
-main {
+main,
+.datos-producto {
     flex: 1;
     min-width: 0;
 }
@@ -212,44 +161,9 @@ h3 {
     overflow-wrap: anywhere;
 }
 
-h1 {
-    margin-top: 0;
-    font-size: 1.8rem;
-}
-
-.introduccion {
+.seccion-catalogo,
+#seccion-reviews {
     margin-bottom: 32px;
-}
-
-.seccion-catalogo {
-    margin-bottom: 40px;
-}
-
-.titulo-seccion {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-bottom: 18px;
-}
-
-.titulo-seccion h2 {
-    margin: 0;
-}
-
-.productos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-article {
-    padding: 18px;
-    background-color: #152a43;
-    border: 1px solid #6f9bc7;
-    border-radius: 6px;
-    overflow-wrap: anywhere;
 }
 
 .productos article {
@@ -257,40 +171,29 @@ article {
     min-width: 0;
     display: flex;
     flex-direction: column;
+    overflow-wrap: anywhere;
 }
 
-.productos article img {
-    width: 100%;
-    height: 200px;
+.productos img,
+.imagen-producto {
     object-fit: contain;
     background-color: #f4f8ff;
-    border-radius: 4px;
+    max-width: 100%;
 }
 
-.productos article h3 {
-    font-size: 1rem;
-}
-
-.productos article p {
-    font-size: 0.85rem;
+.productos img {
+    width: 100%;
+    height: 200px;
 }
 
 .precio {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #c4dfff;
+    font-weight: bold;
 }
 
 .boton-detalle {
-    display: block;
-    padding: 10px 12px;
     margin-top: auto;
-    background-color: #9dcaff;
-    color: #08121f;
-    border-radius: 4px;
-    text-decoration: none;
+    padding: 10px;
     text-align: center;
-    font-weight: 600;
 }
 
 .principal-cuenta {
@@ -301,133 +204,36 @@ article {
 }
 
 .cuenta {
-    width: 440px;
+    width: 400px;
     max-width: 100%;
-    padding: 28px;
-    background-color: #152a43;
-    border: 1px solid #6f9bc7;
-    border-radius: 6px;
-}
-
-.cuenta label {
-    display: block;
-    margin-bottom: 6px;
-}
-
-.cuenta input:not([type="checkbox"]) {
-    width: 100%;
-}
-
-.cuenta button {
-    width: 100%;
-}
-
-.campo-terminos {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.campo-terminos input {
-    margin-top: 7px;
-    flex-shrink: 0;
-}
-
-.detalle {
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
 }
 
 .imagen-producto {
     width: 350px;
-    max-width: 100%;
     height: 350px;
-    object-fit: contain;
-    background-color: #f4f8ff;
-    border-radius: 6px;
 }
 
 .datos-producto {
-    flex: 1 1 260px;
-    min-width: 0;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 0;
-    list-style: none;
-}
-
-.tags li {
-    padding: 4px 10px;
-    background-color: #274561;
-    border-radius: 4px;
-}
-
-#seccion-reviews {
-    margin-top: 36px;
+    flex-basis: 260px;
 }
 
 #reviews article {
-    margin-bottom: 16px;
-}
-
-.estado {
-    padding: 12px 0;
+    margin: 16px 0;
 }
 
 footer {
-    padding: 20px 24px;
-    background-color: #08121f;
-    color: white;
     text-align: center;
     overflow-wrap: anywhere;
 }
 
-.saltar-contenido {
-    position: absolute;
-    top: -100px;
-    left: 15px;
-    z-index: 20;
-    padding: 10px;
-    background-color: #08121f;
-}
-
-.saltar-contenido:focus {
-    top: 10px;
-}
-
-.aviso-sin-js {
-    padding: 20px;
-    text-align: center;
-}
-
-@media (max-width: 1000px) {
-    header {
-        position: static;
-    }
-
-    .formulario-busqueda {
-        flex-grow: 1;
-    }
-
-    .categorias {
-        flex-basis: 190px;
-    }
-}
-
 @media (max-width: 768px) {
     header {
-        padding: 16px;
         justify-content: center;
     }
 
     header nav {
-        justify-content: center;
         width: 100%;
+        justify-content: center;
     }
 
     .formulario-busqueda {
@@ -436,13 +242,11 @@ footer {
 
     .contenido {
         flex-direction: column;
-        gap: 24px;
-        padding: 20px 16px;
+        padding: 16px;
     }
 
     .categorias {
         flex-basis: auto;
-        width: 100%;
     }
 
     .categorias ul {
@@ -451,17 +255,5 @@ footer {
 
     .productos article {
         flex-basis: 100%;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .cuenta {
-        padding: 22px;
-    }
-
-    .principal-cuenta {
-        min-height: 60vh;
     }
 }

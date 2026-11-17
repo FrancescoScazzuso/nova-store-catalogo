@@ -1,40 +1,15 @@
-let formularioRegistro = document.querySelector('#formulario-registro');
-let emailRegistro = document.querySelector('#email');
-let contrasenaRegistro = document.querySelector('#contrasena');
-let repetirContrasena = document.querySelector('#repetir-contrasena');
-let terminos = document.querySelector('#terminos');
-
-formularioRegistro.addEventListener('submit', function (event) {
+document.querySelector('#formulario-registro').addEventListener('submit', function (event) {
     event.preventDefault();
-    let emailValido = validarEmail(emailRegistro, document.querySelector('#error-email'));
-    let contrasenaValida = validarContrasena(contrasenaRegistro, document.querySelector('#error-contrasena'));
-    let contrasenasCoinciden = contrasenaRegistro.value === repetirContrasena.value;
-    let mensajeRepetir = '';
+    let cuentaValida = validarCuenta();
+    let contrasena = document.querySelector('#contrasena').value;
+    let repeticion = document.querySelector('#repetir-contrasena').value;
+    let coinciden = contrasena === repeticion;
+    let terminos = document.querySelector('#terminos').checked;
 
-    if (!contrasenasCoinciden) {
-        mensajeRepetir = 'Las contraseñas no coinciden';
-    } else if (repetirContrasena.value === '') {
-        mensajeRepetir = 'Repetí la contraseña.';
-        contrasenasCoinciden = false;
-    }
-    mostrarErrorCampo(repetirContrasena, document.querySelector('#error-repetir'), mensajeRepetir);
+    document.querySelector('#error-repetir').innerText = coinciden ? '' : 'Las contraseñas no coinciden';
+    document.querySelector('#error-terminos').innerText = terminos ? '' : 'Debés aceptar los términos y condiciones.';
 
-    let mensajeTerminos = '';
-    if (!terminos.checked) {
-        mensajeTerminos = 'Debés aceptar los términos y condiciones.';
-    }
-    mostrarErrorCampo(terminos, document.querySelector('#error-terminos'), mensajeTerminos);
-
-    if (!emailValido) {
-        emailRegistro.focus();
-    } else if (!contrasenaValida) {
-        contrasenaRegistro.focus();
-    } else if (!contrasenasCoinciden) {
-        repetirContrasena.focus();
-    } else if (!terminos.checked) {
-        terminos.focus();
-    } else {
-        // El registro de esta entrega redirige al login y no almacena contraseñas.
+    if (cuentaValida && coinciden && terminos) {
         location.href = 'login.html';
     }
 });
