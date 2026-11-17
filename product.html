@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Nova Store - Detalle del producto</title>
+</head>
+
+<body>
+    <a class="saltar-contenido" href="#contenido-principal">Ir al contenido</a>
+    <header>
+        <a href="index.html"><img class="logo" src="img/nova-store-logo.png" alt="Nova Store - Home"></a>
+        <nav aria-label="Navegación principal">
+            <a href="index.html">Home</a>
+            <a class="enlace-login" href="login.html">Login</a>
+            <a class="enlace-registro" href="register.html">Registro</a>
+            <span class="saludo" hidden></span>
+            <a class="enlace-logout" href="index.html" hidden>Logout</a>
+        </nav>
+        <form class="formulario-busqueda" action="search-results.html" method="get" novalidate>
+            <label for="buscador">Buscar productos:</label>
+            <div class="campo-busqueda">
+                <input type="search" id="buscador" name="busqueda" placeholder="Ej: laptop" aria-describedby="error-busqueda">
+                <button type="submit">Buscar</button>
+            </div>
+            <p class="error" id="error-busqueda" role="alert"></p>
+        </form>
+    </header>
+    <div class="contenido">
+        <nav class="categorias" aria-label="Categorías de productos">
+            <h2>Categorías</h2>
+            <p class="estado-categorias" role="status">Cargando categorías…</p>
+            <ul class="lista-categorias"></ul>
+        </nav>
+        <main id="contenido-principal">
+            <p id="estado-producto" class="estado" role="status">Cargando producto…</p>
+            <section id="detalle-producto" hidden aria-labelledby="nombre-producto">
+                <h1 id="nombre-producto"></h1>
+                <div class="detalle">
+                    <img class="imagen-producto" id="foto-producto" alt="">
+                    <div class="datos-producto">
+                        <p><strong>Marca:</strong> <span id="marca-producto"></span></p>
+                        <p id="descripcion-producto"></p>
+                        <p class="precio" id="precio-producto"></p>
+                        <p><strong>Categoría:</strong> <a id="categoria-producto"></a></p>
+                        <p><strong>Stock:</strong> <span id="stock-producto"></span></p>
+                        <p><strong>Tags:</strong></p>
+                        <ul class="tags" id="tags-producto"></ul>
+                    </div>
+                </div>
+            </section>
+            <section id="seccion-reviews" hidden aria-labelledby="titulo-reviews">
+                <h2 id="titulo-reviews">Reviews de usuarios</h2>
+                <p id="estado-reviews" class="estado" role="status"></p>
+                <div id="reviews"></div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>Integrantes: Fausto Beloqui, Francesco Scazzuso y Mateo Posse</p>
+    </footer>
+    <noscript><p class="aviso-sin-js">Activá JavaScript para cargar los productos y usar los formularios.</p></noscript>
+    <script src="js/comun.js"></script>
+    <script src="js/saludo.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/product.js"></script>
+</body>
+
+</html>

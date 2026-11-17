@@ -1,0 +1,566 @@
+{
+    "categories": [
+        {
+            "name": "Beauty",
+            "slug": "beauty"
+        },
+        {
+            "name": "Fragrances",
+            "slug": "fragrances"
+        },
+        {
+            "name": "Furniture",
+            "slug": "furniture"
+        },
+        {
+            "name": "Groceries",
+            "slug": "groceries"
+        },
+        {
+            "name": "Home decoration",
+            "slug": "home-decoration"
+        },
+        {
+            "name": "Kitchen accessories",
+            "slug": "kitchen-accessories"
+        },
+        {
+            "name": "Laptops",
+            "slug": "laptops"
+        },
+        {
+            "name": "Mens shirts",
+            "slug": "mens-shirts"
+        },
+        {
+            "name": "Mens shoes",
+            "slug": "mens-shoes"
+        },
+        {
+            "name": "Mens watches",
+            "slug": "mens-watches"
+        },
+        {
+            "name": "Mobile accessories",
+            "slug": "mobile-accessories"
+        },
+        {
+            "name": "Motorcycle",
+            "slug": "motorcycle"
+        },
+        {
+            "name": "Skin care",
+            "slug": "skin-care"
+        },
+        {
+            "name": "Smartphones",
+            "slug": "smartphones"
+        },
+        {
+            "name": "Sports accessories",
+            "slug": "sports-accessories"
+        },
+        {
+            "name": "Sunglasses",
+            "slug": "sunglasses"
+        },
+        {
+            "name": "Tablets",
+            "slug": "tablets"
+        },
+        {
+            "name": "Tops",
+            "slug": "tops"
+        },
+        {
+            "name": "Vehicle",
+            "slug": "vehicle"
+        },
+        {
+            "name": "Womens bags",
+            "slug": "womens-bags"
+        },
+        {
+            "name": "Womens dresses",
+            "slug": "womens-dresses"
+        },
+        {
+            "name": "Womens jewellery",
+            "slug": "womens-jewellery"
+        },
+        {
+            "name": "Womens shoes",
+            "slug": "womens-shoes"
+        },
+        {
+            "name": "Womens watches",
+            "slug": "womens-watches"
+        },
+        {
+            "slug": "smartwatches",
+            "name": "Smartwatches"
+        },
+        {
+            "slug": "monitores",
+            "name": "Monitores"
+        },
+        {
+            "slug": "audio",
+            "name": "Audio"
+        },
+        {
+            "slug": "perifericos",
+            "name": "Periféricos"
+        },
+        {
+            "slug": "computadoras",
+            "name": "Computadoras"
+        },
+        {
+            "slug": "redes",
+            "name": "Redes"
+        },
+        {
+            "slug": "impresion-3d",
+            "name": "Impresión 3D"
+        },
+        {
+            "slug": "drones",
+            "name": "Drones"
+        },
+        {
+            "slug": "camaras",
+            "name": "Cámaras"
+        },
+        {
+            "slug": "realidad-virtual",
+            "name": "Realidad virtual"
+        },
+        {
+            "slug": "almacenamiento",
+            "name": "Almacenamiento"
+        },
+        {
+            "slug": "proyectores",
+            "name": "Proyectores"
+        }
+    ],
+    "products": [
+        {
+            "title": "Laptop Pro 15",
+            "description": "Notebook ideal para estudiar, trabajar y mirar series.",
+            "price": 1250000,
+            "thumbnail": "img/laptop-nova.png",
+            "alt": "Laptop plateada",
+            "id": 1,
+            "category": "laptops",
+            "section": "destacados",
+            "brand": "Nova Tech",
+            "stock": 12,
+            "tags": [
+                "tecnología",
+                "notebook",
+                "estudio"
+            ],
+            "reviews": [
+                {
+                    "rating": 5,
+                    "comment": "Muy rápida y liviana. La uso para cursar y funciona perfecto.",
+                    "date": "2026-09-10",
+                    "reviewerName": "Martina G."
+                },
+                {
+                    "rating": 4,
+                    "comment": "Buena computadora y muy buena pantalla.",
+                    "date": "2026-09-08",
+                    "reviewerName": "Lucas R."
+                },
+                {
+                    "rating": 5,
+                    "comment": "La batería dura muchas horas. La recomiendo.",
+                    "date": "2026-09-02",
+                    "reviewerName": "Carla M."
+                }
+            ],
+            "images": [
+                "img/laptop-nova.png"
+            ],
+            "detailDescription": "Notebook con pantalla de 15 pulgadas, ideal para estudiar, trabajar y realizar tareas diarias.",
+            "detailAlt": "Laptop Pro 15 plateada"
+        },
+        {
+            "title": "Smartphone X12",
+            "description": "Teléfono con cámara de alta calidad y pantalla amplia.",
+            "price": 780000,
+            "thumbnail": "img/smartphone-nova.png",
+            "alt": "Smartphone azul",
+            "id": 2,
+            "category": "smartphones",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/smartphone-nova.png"
+            ]
+        },
+        {
+            "title": "Auriculares Air",
+            "description": "Auriculares inalámbricos con estuche de carga.",
+            "price": 95000,
+            "thumbnail": "img/auriculares-nova.png",
+            "alt": "Auriculares inalámbricos",
+            "id": 3,
+            "category": "mobile-accessories",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/auriculares-nova.png"
+            ]
+        },
+        {
+            "title": "Tablet Nova Tab",
+            "description": "Tablet liviana con pantalla de alta definición.",
+            "price": 430000,
+            "thumbnail": "img/tablet-nova.png",
+            "alt": "Tablet Nova Tab",
+            "id": 4,
+            "category": "tablets",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/tablet-nova.png"
+            ]
+        },
+        {
+            "title": "Smartwatch Nova Fit",
+            "description": "Reloj inteligente con monitor de actividad.",
+            "price": 185000,
+            "thumbnail": "img/smartwatch-nova.png",
+            "alt": "Smartwatch Nova Fit",
+            "id": 5,
+            "category": "smartwatches",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/smartwatch-nova.png"
+            ]
+        },
+        {
+            "title": "Auriculares Nova",
+            "description": "Auriculares pequeños con estuche de carga.",
+            "price": 110000,
+            "thumbnail": "img/auriculares-buds.png",
+            "alt": "Auriculares Nova Buds",
+            "id": 6,
+            "category": "mobile-accessories",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/auriculares-buds.png"
+            ]
+        },
+        {
+            "title": "Monitor Nova View",
+            "description": "Monitor de 27 pulgadas con imagen Full HD.",
+            "price": 320000,
+            "thumbnail": "img/monitor-nova.png",
+            "alt": "Monitor Nova View",
+            "id": 7,
+            "category": "monitores",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/monitor-nova.png"
+            ]
+        },
+        {
+            "title": "Parlante Nova Beat",
+            "description": "Parlante portátil con conexión Bluetooth.",
+            "price": 85000,
+            "thumbnail": "img/parlante-nova.png",
+            "alt": "Parlante Nova Beat",
+            "id": 8,
+            "category": "audio",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/parlante-nova.png"
+            ]
+        },
+        {
+            "title": "Teclado Nova Keys",
+            "description": "Teclado mecánico compacto con luz celeste.",
+            "price": 125000,
+            "thumbnail": "img/teclado-nova.png",
+            "alt": "Teclado Nova Keys",
+            "id": 9,
+            "category": "perifericos",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/teclado-nova.png"
+            ]
+        },
+        {
+            "title": "Mouse Nova Click",
+            "description": "Mouse inalámbrico cómodo, practico y preciso.",
+            "price": 48000,
+            "thumbnail": "img/mouse-nova.png",
+            "alt": "Mouse Nova Click",
+            "id": 10,
+            "category": "perifericos",
+            "section": "destacados",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/mouse-nova.png"
+            ]
+        },
+        {
+            "title": "Servidor Nova Rack",
+            "description": "Servidor rack de alto rendimiento para empresas y centros de datos.",
+            "price": 3800000,
+            "thumbnail": "img/servidor-nova.png",
+            "alt": "Servidor Nova Rack X1",
+            "id": 11,
+            "category": "computadoras",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/servidor-nova.png"
+            ]
+        },
+        {
+            "title": "PC Gamer Nova Core",
+            "description": "Computadora de escritorio con refrigeración líquida y gráficos dedicados.",
+            "price": 1950000,
+            "thumbnail": "img/pc-gamer-nova.png",
+            "alt": "PC Gamer Nova Core",
+            "id": 12,
+            "category": "computadoras",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/pc-gamer-nova.png"
+            ]
+        },
+        {
+            "title": "Router Nova Mesh 6",
+            "description": "Router Wi-Fi 6 de alta velocidad con cobertura para todo el hogar.",
+            "price": 210000,
+            "thumbnail": "img/router-nova.png",
+            "alt": "Router Nova Mesh 6",
+            "id": 13,
+            "category": "redes",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/router-nova.png"
+            ]
+        },
+        {
+            "title": "Impresora 3D Nova",
+            "description": "Impresora 3D cerrada para crear piezas y prototipos con precisión.",
+            "price": 680000,
+            "thumbnail": "img/impresora-3d-nova.png",
+            "alt": "Impresora 3D Nova Maker",
+            "id": 14,
+            "category": "impresion-3d",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/impresora-3d-nova.png"
+            ]
+        },
+        {
+            "title": "Drone Nova Sky 4K",
+            "description": "Drone plegable con cámara estabilizada y grabación en alta resolución.",
+            "price": 740000,
+            "thumbnail": "img/drone-nova.png",
+            "alt": "Drone Nova Sky 4K",
+            "id": 15,
+            "category": "drones",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/drone-nova.png"
+            ]
+        },
+        {
+            "title": "Cámara Nova Vision",
+            "description": "Cámara digital sin espejo con lente intercambiable y video 4K.",
+            "price": 890000,
+            "thumbnail": "img/camara-nova.png",
+            "alt": "Cámara Nova Vision",
+            "id": 16,
+            "category": "camaras",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/camara-nova.png"
+            ]
+        },
+        {
+            "title": "Visor Nova VR",
+            "description": "Visor de realidad virtual con controles inalámbricos y audio integrado.",
+            "price": 560000,
+            "thumbnail": "img/visor-vr-nova.png",
+            "alt": "Visor Nova VR",
+            "id": 17,
+            "category": "realidad-virtual",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/visor-vr-nova.png"
+            ]
+        },
+        {
+            "title": "SSD Externo 2 TB",
+            "description": "Unidad portátil resistente con conexión USB-C y transferencia rápida.",
+            "price": 230000,
+            "thumbnail": "img/ssd-externo-nova.png",
+            "alt": "SSD externo Nova Drive de 2 TB",
+            "id": 18,
+            "category": "almacenamiento",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/ssd-externo-nova.png"
+            ]
+        },
+        {
+            "title": "Cámara Nova Guard",
+            "description": "Cámara inteligente con visión nocturna y alertas de movimiento.",
+            "price": 175000,
+            "thumbnail": "img/camara-seguridad-nova.png",
+            "alt": "Cámara de seguridad Nova Guard",
+            "id": 19,
+            "category": "camaras",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/camara-seguridad-nova.png"
+            ]
+        },
+        {
+            "title": "Proyector Nova Beam",
+            "description": "Proyector portátil Full HD con conexión inalámbrica.",
+            "price": 490000,
+            "thumbnail": "img/proyector-nova.png",
+            "alt": "Proyector Nova Beam",
+            "id": 20,
+            "category": "proyectores",
+            "section": "nuevos",
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/proyector-nova.png"
+            ]
+        },
+        {
+            "title": "Laptop Air",
+            "description": "Notebook liviana para llevar a todos lados.",
+            "price": 980000,
+            "thumbnail": "img/laptop-nova.png",
+            "alt": "Laptop Air",
+            "id": 21,
+            "category": "laptops",
+            "section": null,
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/laptop-nova.png"
+            ]
+        },
+        {
+            "title": "Laptop Studio",
+            "description": "Equipo potente para diseño y edición.",
+            "price": 1600000,
+            "thumbnail": "img/laptop-nova.png",
+            "alt": "Laptop Studio",
+            "id": 22,
+            "category": "laptops",
+            "section": null,
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/laptop-nova.png"
+            ]
+        },
+        {
+            "title": "Notebook Go",
+            "description": "Una opción práctica para las tareas diarias.",
+            "price": 720000,
+            "thumbnail": "img/laptop-nova.png",
+            "alt": "Notebook Go",
+            "id": 23,
+            "category": "laptops",
+            "section": null,
+            "brand": null,
+            "stock": null,
+            "tags": [],
+            "reviews": [],
+            "images": [
+                "img/laptop-nova.png"
+            ]
+        }
+    ]
+}
