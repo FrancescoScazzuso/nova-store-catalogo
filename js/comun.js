@@ -12,22 +12,6 @@ function nombreCategoria(slug) {
     return slug.replaceAll('-', ' ');
 }
 
-function cargarDatos(url, mostrar, estado) {
-    fetch(url)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('No se pudieron cargar los datos.');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            mostrar(data);
-        })
-        .catch(function () {
-            estado.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
-        });
-}
-
 function formatearPrecio(precio) {
     return 'USD ' + Number(precio).toFixed(2);
 }
@@ -81,14 +65,24 @@ campoBusqueda.addEventListener('input', function () {
 let listaCategorias = document.querySelector('.lista-categorias');
 let estadoCategorias = document.querySelector('.estado-categorias');
 
-cargarDatos('https://dummyjson.com/products/categories', function (categorias) {
-    let enlaces = '';
-    for (let i = 0; i < categorias.length; i++) {
-        enlaces += `<li><a href="category.html?categoria=${encodeURIComponent(categorias[i].slug)}">${escaparTexto(categorias[i].name)}</a></li>`;
-    }
-    listaCategorias.innerHTML = enlaces;
-    estadoCategorias.innerText = '';
-}, estadoCategorias);
+fetch('https://dummyjson.com/products/categories')
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('No se pudieron cargar los datos.');
+        }
+        return response.json();
+    })
+    .then(function (categorias) {
+        let enlaces = '';
+        for (let i = 0; i < categorias.length; i++) {
+            enlaces += `<li><a href="category.html?categoria=${encodeURIComponent(categorias[i].slug)}">${escaparTexto(categorias[i].name)}</a></li>`;
+        }
+        listaCategorias.innerHTML = enlaces;
+        estadoCategorias.innerText = '';
+    })
+    .catch(function () {
+        estadoCategorias.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+    });
 
 function validarCuenta() {
     let email = document.querySelector('#email');

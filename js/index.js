@@ -1,12 +1,29 @@
-function cargarSeccion(categoria, nombre) {
-    let contenedor = document.querySelector('#productos-' + nombre);
-    let estado = document.querySelector('#estado-' + nombre);
+fetch('https://dummyjson.com/products/category/smartphones?limit=10')
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('No se pudieron cargar los datos.');
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        document.querySelector('#productos-destacados').innerHTML = crearTarjetas(data.products);
+        document.querySelector('#estado-destacados').innerText = '';
+    })
+    .catch(function () {
+        document.querySelector('#estado-destacados').innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+    });
 
-    cargarDatos('https://dummyjson.com/products/category/' + categoria + '?limit=10', function (data) {
-        contenedor.innerHTML = crearTarjetas(data.products);
-        estado.innerText = '';
-    }, estado);
-}
-
-cargarSeccion('smartphones', 'destacados');
-cargarSeccion('mobile-accessories', 'nuevos');
+fetch('https://dummyjson.com/products/category/mobile-accessories?limit=10')
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('No se pudieron cargar los datos.');
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        document.querySelector('#productos-nuevos').innerHTML = crearTarjetas(data.products);
+        document.querySelector('#estado-nuevos').innerText = '';
+    })
+    .catch(function () {
+        document.querySelector('#estado-nuevos').innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+    });
