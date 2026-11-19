@@ -1,60 +1,43 @@
-// Funciones compartidas por las seis páginas.
-function escaparTexto(texto) {
-    return String(texto)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;');
-}
-
-function nombreCategoria(slug) {
-    return slug.replaceAll('-', ' ');
-}
-
-function formatearPrecio(precio) {
-    return 'USD ' + Number(precio).toFixed(2);
-}
-
-function crearTarjetas(productos) {
+function crearTarjetas(productos, selector) {
     let tarjetas = '';
-
     for (let i = 0; i < productos.length; i++) {
-        let producto = productos[i];
         tarjetas += `
             <article>
-                <img src="${escaparTexto(producto.thumbnail)}" alt="${escaparTexto(producto.title)}" loading="lazy">
-                <h3>${escaparTexto(producto.title)}</h3>
-                <p>${escaparTexto(producto.description)}</p>
-                <p class="precio">${formatearPrecio(producto.price)}</p>
-                <a class="boton-detalle" href="product.html?id=${encodeURIComponent(producto.id)}">Ver detalle</a>
+                <img alt="Imagen del producto">
+                <h3></h3>
+                <p class="descripcion"></p>
+                <p class="precio"></p>
+                <a class="boton-detalle" href="product.html?id=${Number(productos[i].id)}">Ver detalle</a>
             </article>`;
     }
+    document.querySelector(selector).innerHTML = tarjetas;
 
-    return tarjetas;
+    let imagenes = document.querySelectorAll(selector + ' img');
+    let titulos = document.querySelectorAll(selector + ' h3');
+    let descripciones = document.querySelectorAll(selector + ' .descripcion');
+    let precios = document.querySelectorAll(selector + ' .precio');
+    for (let i = 0; i < productos.length; i++) {
+        imagenes[i].src = productos[i].thumbnail;
+        titulos[i].innerText = productos[i].title;
+        descripciones[i].innerText = productos[i].description;
+        precios[i].innerText = 'USD ' + productos[i].price;
+    }
 }
 
-// El buscador usa GET para que el término viaje en la query string.
 let formularioBusqueda = document.querySelector('.formulario-busqueda');
 let campoBusqueda = document.querySelector('#buscador');
 let errorBusqueda = document.querySelector('#error-busqueda');
 
 formularioBusqueda.addEventListener('submit', function (event) {
-    let termino = campoBusqueda.value.trim();
+    event.preventDefault();
     errorBusqueda.innerText = '';
 
-    if (termino === '') {
-        event.preventDefault();
+    if (campoBusqueda.value === '') {
         errorBusqueda.innerText = 'Ingresá un término de búsqueda.';
-    } else if (termino.length < 3) {
-        event.preventDefault();
+    } else if (campoBusqueda.value.length < 3) {
         errorBusqueda.innerText = 'La búsqueda debe tener al menos 3 caracteres.';
     } else {
-        campoBusqueda.value = termino;
-    }
-
-    if (errorBusqueda.innerText !== '') {
-        campoBusqueda.focus();
+        this.submit();
     }
 });
 
@@ -67,35 +50,34 @@ let estadoCategorias = document.querySelector('.estado-categorias');
 
 fetch('https://dummyjson.com/products/categories')
     .then(function (response) {
-        if (!response.ok) {
-            throw new Error('No se pudieron cargar los datos.');
-        }
         return response.json();
     })
     .then(function (categorias) {
         let enlaces = '';
         for (let i = 0; i < categorias.length; i++) {
-            enlaces += `<li><a href="category.html?categoria=${encodeURIComponent(categorias[i].slug)}">${escaparTexto(categorias[i].name)}</a></li>`;
+            enlaces += `<li><a href="category.html?categoria=${categorias[i].slug}"></a></li>`;
         }
         listaCategorias.innerHTML = enlaces;
+        let textos = document.querySelectorAll('.lista-categorias a');
+        for (let i = 0; i < categorias.length; i++) {
+            textos[i].innerText = categorias[i].name;
+        }
         estadoCategorias.innerText = '';
     })
     .catch(function () {
-        estadoCategorias.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+        estadoCategorias.innerText = 'No se pudieron cargar las categorías. Volvé a intentar.';
     });
 
 function validarCuenta() {
-    let email = document.querySelector('#email');
+    let email = document.querySelector('#email').value;
     let contrasena = document.querySelector('#contrasena').value;
     let errorEmail = '';
     let errorContrasena = '';
 
-    if (email.value.trim() === '') {
+    if (email === '') {
         errorEmail = 'El email es obligatorio.';
-    } else if (email.validity.typeMismatch) {
-        errorEmail = 'Ingresá un email válido.';
     }
-    if (contrasena.trim() === '') {
+    if (contrasena === '') {
         errorContrasena = 'La contraseña es obligatoria.';
     } else if (contrasena.length < 6) {
         errorContrasena = 'La contraseña debe tener al menos 6 caracteres';

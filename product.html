@@ -14,48 +14,48 @@
 <body>
     <header>
         <a href="index.html"><img class="logo" src="img/nova-store-logo.png" alt="Nova Store - Home"></a>
-        <nav aria-label="Navegación principal">
+        <nav>
             <a href="index.html">Home</a>
             <a class="enlace-login" href="login.html">Login</a>
             <a class="enlace-registro" href="register.html">Registro</a>
-            <span class="saludo" hidden></span>
-            <a class="enlace-logout" href="index.html" hidden>Logout</a>
+            <span class="saludo"></span>
+            <a class="enlace-logout" href="index.html">Logout</a>
         </nav>
-        <form class="formulario-busqueda" action="search-results.html" method="get" novalidate>
+        <form class="formulario-busqueda" action="search-results.html" method="get">
             <label for="buscador">Buscar productos:</label>
             <div class="campo-busqueda">
-                <input type="search" id="buscador" name="busqueda" placeholder="Ej: laptop" aria-describedby="error-busqueda">
+                <input type="text" id="buscador" name="q" placeholder="Ej: laptop">
                 <button type="submit">Buscar</button>
             </div>
-            <p class="error" id="error-busqueda" role="alert"></p>
+            <span class="error" id="error-busqueda"></span>
         </form>
     </header>
     <div class="contenido">
-        <nav class="categorias" aria-label="Categorías de productos">
+        <nav class="categorias">
             <h2>Categorías</h2>
-            <p class="estado-categorias" role="status">Cargando categorías…</p>
+            <p class="estado-categorias">Cargando categorías…</p>
             <ul class="lista-categorias"></ul>
         </nav>
         <main id="contenido-principal">
-            <p id="estado-producto" class="estado" role="status">Cargando producto…</p>
-            <section id="detalle-producto" hidden aria-labelledby="nombre-producto">
+            <p id="estado-producto" class="estado">Cargando producto…</p>
+            <section id="detalle-producto">
                 <h1 id="nombre-producto"></h1>
                 <div class="detalle">
-                    <img class="imagen-producto" id="foto-producto" alt="">
+                    <img class="imagen-producto" id="foto-producto" alt="Imagen del producto">
                     <div class="datos-producto">
                         <p><strong>Marca:</strong> <span id="marca-producto"></span></p>
                         <p id="descripcion-producto"></p>
                         <p class="precio" id="precio-producto"></p>
-                        <p><strong>Categoría:</strong> <a id="categoria-producto"></a></p>
+                        <p><strong>Categoría:</strong> <span id="categoria-producto"></span></p>
                         <p><strong>Stock:</strong> <span id="stock-producto"></span></p>
                         <p><strong>Tags:</strong></p>
                         <ul class="tags" id="tags-producto"></ul>
                     </div>
                 </div>
             </section>
-            <section id="seccion-reviews" hidden aria-labelledby="titulo-reviews">
+            <section id="seccion-reviews">
                 <h2 id="titulo-reviews">Reviews de usuarios</h2>
-                <p id="estado-reviews" class="estado" role="status"></p>
+                <p id="estado-reviews" class="estado"></p>
                 <div id="reviews"></div>
             </section>
         </main>

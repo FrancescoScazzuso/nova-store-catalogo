@@ -1,22 +1,24 @@
-let categoria = new URLSearchParams(location.search).get('categoria');
+let queryString = location.search;
+let parametros = new URLSearchParams(queryString);
+let categoria = parametros.get('categoria');
 let estadoProductos = document.querySelector('#estado-productos');
 
-if (!categoria) {
+if (categoria === null || categoria === '') {
     estadoProductos.innerText = 'Elegí una categoría del menú.';
 } else {
-    document.querySelector('#titulo-categoria').innerText = 'Categoría: ' + nombreCategoria(categoria);
-    fetch('https://dummyjson.com/products/category/' + encodeURIComponent(categoria) + '?limit=0')
+    document.querySelector('#titulo-categoria').innerText = 'Categoría: ' + categoria;
+    fetch('https://dummyjson.com/products/category/' + categoria + '?limit=0')
         .then(function (response) {
-            if (!response.ok) {
-                throw new Error('No se pudieron cargar los datos.');
-            }
             return response.json();
         })
         .then(function (data) {
-            document.querySelector('#productos-categoria').innerHTML = crearTarjetas(data.products);
-            estadoProductos.innerText = data.products.length === 0 ? 'No hay productos en esta categoría.' : '';
+            crearTarjetas(data.products, '#productos-categoria');
+            estadoProductos.innerText = '';
+            if (data.products.length === 0) {
+                estadoProductos.innerText = 'No hay productos en esta categoría.';
+            }
         })
         .catch(function () {
-            estadoProductos.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+            estadoProductos.innerText = 'No se pudieron cargar los productos.';
         });
 }

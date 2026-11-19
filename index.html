@@ -14,41 +14,41 @@
 <body>
     <header>
         <a href="index.html"><img class="logo" src="img/nova-store-logo.png" alt="Nova Store - Home"></a>
-        <nav aria-label="Navegación principal">
+        <nav>
             <a href="index.html">Home</a>
             <a class="enlace-login" href="login.html">Login</a>
             <a class="enlace-registro" href="register.html">Registro</a>
-            <span class="saludo" hidden></span>
-            <a class="enlace-logout" href="index.html" hidden>Logout</a>
+            <span class="saludo"></span>
+            <a class="enlace-logout" href="index.html">Logout</a>
         </nav>
-        <form class="formulario-busqueda" action="search-results.html" method="get" novalidate>
+        <form class="formulario-busqueda" action="search-results.html" method="get">
             <label for="buscador">Buscar productos:</label>
             <div class="campo-busqueda">
-                <input type="search" id="buscador" name="busqueda" placeholder="Ej: laptop" aria-describedby="error-busqueda">
+                <input type="text" id="buscador" name="q" placeholder="Ej: laptop">
                 <button type="submit">Buscar</button>
             </div>
-            <p class="error" id="error-busqueda" role="alert"></p>
+            <span class="error" id="error-busqueda"></span>
         </form>
     </header>
-    <section class="banner" aria-label="Nova Store">
+    <section class="banner">
         <img src="img/banner-nova-store.png" alt="Nova Store">
     </section>
     <div class="contenido">
-        <nav class="categorias" aria-label="Categorías de productos">
+        <nav class="categorias">
             <h2>Categorías</h2>
-            <p class="estado-categorias" role="status">Cargando categorías…</p>
+            <p class="estado-categorias">Cargando categorías…</p>
             <ul class="lista-categorias"></ul>
         </nav>
         <main id="contenido-principal">
             <h1>Bienvenido a Nova Store</h1>
-            <section class="seccion-catalogo" aria-labelledby="titulo-destacados">
+            <section class="seccion-catalogo">
                 <h2 id="titulo-destacados">Smartphones</h2>
-                <p id="estado-destacados" class="estado" role="status">Cargando productos…</p>
+                <p id="estado-destacados" class="estado">Cargando productos…</p>
                 <div class="productos" id="productos-destacados"></div>
             </section>
-            <section class="seccion-catalogo" aria-labelledby="titulo-nuevos">
+            <section class="seccion-catalogo">
                 <h2 id="titulo-nuevos">Accesorios para celulares</h2>
-                <p id="estado-nuevos" class="estado" role="status">Cargando productos…</p>
+                <p id="estado-nuevos" class="estado">Cargando productos…</p>
                 <div class="productos" id="productos-nuevos"></div>
             </section>
         </main>

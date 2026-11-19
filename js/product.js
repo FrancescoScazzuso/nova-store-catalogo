@@ -1,64 +1,83 @@
-let parametrosProducto = new URLSearchParams(location.search);
-let idProducto = parametrosProducto.get('id');
+let queryString = location.search;
+let parametros = new URLSearchParams(queryString);
+let idProducto = parametros.get('id');
 let estadoProducto = document.querySelector('#estado-producto');
-let detalleProducto = document.querySelector('#detalle-producto');
-let seccionReviews = document.querySelector('#seccion-reviews');
 
-if (!idProducto || !/^\d+$/.test(idProducto) || Number(idProducto) < 1) {
-    estadoProducto.innerText = 'Elegí un producto desde el catálogo para ver su detalle.';
-} else {
-    fetch('https://dummyjson.com/products/' + encodeURIComponent(idProducto))
+if (Number(idProducto) > 0) {
+    fetch('https://dummyjson.com/products/' + idProducto)
         .then(function (response) {
-            if (!response.ok) {
-                throw new Error('No se pudieron cargar los datos.');
-            }
             return response.json();
         })
         .then(function (producto) {
+            if (producto.id === undefined) {
+                estadoProducto.innerText = 'No se encontró el producto.';
+                return;
+            }
+
             document.querySelector('#nombre-producto').innerText = producto.title;
-            document.querySelector('#marca-producto').innerText = producto.brand || 'Sin marca informada';
             document.querySelector('#descripcion-producto').innerText = producto.description;
-            document.querySelector('#precio-producto').innerText = formatearPrecio(producto.price);
-            document.querySelector('#stock-producto').innerText = producto.stock == null ? 'No informado' : producto.stock + ' unidades';
-            document.title = 'Nova Store - ' + producto.title;
+            document.querySelector('#precio-producto').innerText = 'USD ' + producto.price;
+            document.querySelector('#foto-producto').src = producto.thumbnail;
+            document.querySelector('#stock-producto').innerText = producto.stock + ' unidades';
 
-            let fotoProducto = document.querySelector('#foto-producto');
-            fotoProducto.src = producto.images[0] || producto.thumbnail;
-            fotoProducto.alt = producto.title;
+            let marca = 'Sin marca informada';
+            if (producto.brand !== undefined && producto.brand !== null) {
+                marca = producto.brand;
+            }
+            document.querySelector('#marca-producto').innerText = marca;
+            document.querySelector('#categoria-producto').innerHTML = `<a href="category.html?categoria=${producto.category}"></a>`;
+            document.querySelector('#categoria-producto a').innerText = producto.category;
 
-            let enlaceCategoria = document.querySelector('#categoria-producto');
-            enlaceCategoria.innerText = nombreCategoria(producto.category);
-            enlaceCategoria.href = 'category.html?categoria=' + encodeURIComponent(producto.category);
-
-            let etiquetas = producto.tags || [];
-            let comentarios = producto.reviews || [];
+            let etiquetas = [];
+            if (producto.tags !== undefined && producto.tags !== null) {
+                etiquetas = producto.tags;
+            }
             let tags = '';
             for (let i = 0; i < etiquetas.length && i < 3; i++) {
-                tags += '<li>' + escaparTexto(etiquetas[i]) + '</li>';
+                tags += '<li></li>';
             }
             document.querySelector('#tags-producto').innerHTML = tags;
+            let textosTags = document.querySelectorAll('#tags-producto li');
+            for (let i = 0; i < etiquetas.length && i < 3; i++) {
+                textosTags[i].innerText = etiquetas[i];
+            }
 
+            let comentarios = [];
+            if (producto.reviews !== undefined && producto.reviews !== null) {
+                comentarios = producto.reviews;
+            }
             let reviews = '';
             for (let i = 0; i < comentarios.length; i++) {
-                let review = comentarios[i];
                 reviews += `
                     <article>
-                        <h3>Rating: ${escaparTexto(review.rating)} / 5</h3>
-                        <p>${escaparTexto(review.comment)}</p>
-                        <p>Fecha: ${escaparTexto(review.date.slice(0, 10))}</p>
-                        <p>Usuario: ${escaparTexto(review.reviewerName)}</p>
+                        <h3 class="rating"></h3>
+                        <p class="comentario"></p>
+                        <p class="fecha"></p>
+                        <p class="usuario"></p>
                     </article>`;
             }
             document.querySelector('#reviews').innerHTML = reviews;
+            let ratings = document.querySelectorAll('#reviews .rating');
+            let textos = document.querySelectorAll('#reviews .comentario');
+            let fechas = document.querySelectorAll('#reviews .fecha');
+            let usuarios = document.querySelectorAll('#reviews .usuario');
+            for (let i = 0; i < comentarios.length; i++) {
+                ratings[i].innerText = 'Rating: ' + comentarios[i].rating + ' / 5';
+                textos[i].innerText = comentarios[i].comment;
+                fechas[i].innerText = 'Fecha: ' + comentarios[i].date;
+                usuarios[i].innerText = 'Usuario: ' + comentarios[i].reviewerName;
+            }
             if (comentarios.length === 0) {
                 document.querySelector('#estado-reviews').innerText = 'Este producto todavía no tiene reviews.';
             }
 
             estadoProducto.innerText = '';
-            detalleProducto.hidden = false;
-            seccionReviews.hidden = false;
+            document.querySelector('#detalle-producto').style.display = 'block';
+            document.querySelector('#seccion-reviews').style.display = 'block';
         })
         .catch(function () {
-            estadoProducto.innerText = 'No se pudieron cargar los datos. Volvé a intentar.';
+            estadoProducto.innerText = 'No se pudo cargar el producto.';
         });
+} else {
+    estadoProducto.innerText = 'Elegí un producto desde el catálogo.';
 }

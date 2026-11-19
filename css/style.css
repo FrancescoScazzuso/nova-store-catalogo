@@ -2,33 +2,26 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+body,
+button,
+input {
     font-family: "Roboto Mono", monospace;
-    color: #dcecff;
-    background: linear-gradient(to bottom right, #050d17, #10253d, #567da6);
-    line-height: 1.6;
+    font-size: 14px;
 }
 
-[hidden],
-.error:empty,
-.estado:empty,
-.estado-categorias:empty,
-.categorias ul:empty {
-    display: none;
+body {
+    margin: 0;
+    color: #dcecff;
+    background-color: #10253d;
 }
 
 a {
     color: #9dcaff;
-    overflow-wrap: anywhere;
 }
 
 button,
-input {
-    font: inherit;
+input,
+.boton-detalle {
     padding: 10px;
 }
 
@@ -38,11 +31,6 @@ button,
     color: #08121f;
     border: none;
     text-decoration: none;
-    cursor: pointer;
-}
-
-input {
-    min-width: 0;
 }
 
 header,
@@ -53,16 +41,21 @@ footer {
 
 header,
 header nav,
+.contenido,
 .productos,
 .detalle {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
 }
 
 header {
     align-items: center;
-    justify-content: space-between;
+}
+
+header nav a,
+.saludo {
+    margin: 10px;
 }
 
 header a {
@@ -72,40 +65,38 @@ header a {
 
 .logo {
     width: 220px;
-    height: 85px;
-    object-fit: contain;
 }
 
-.saludo {
-    max-width: 260px;
-    overflow-wrap: anywhere;
+.saludo,
+.enlace-logout,
+#detalle-producto,
+#seccion-reviews {
+    display: none;
 }
 
 .formulario-busqueda {
-    flex: 0 1 345px;
+    width: 345px;
 }
 
-.formulario-busqueda label,
-.cuenta label,
+label,
 .error {
     display: block;
 }
 
-.campo-busqueda,
-.campo-terminos {
+.campo-busqueda {
     display: flex;
-    gap: 8px;
 }
 
-.campo-busqueda input,
-.cuenta input:not([type="checkbox"]),
-.cuenta button {
-    width: 100%;
+.campo-busqueda input {
+    width: 75%;
+}
+
+.campo-busqueda button {
+    width: 25%;
 }
 
 .error {
     color: #ffb6b6;
-    font-size: 0.85rem;
 }
 
 .banner img {
@@ -114,17 +105,16 @@ header a {
 }
 
 .contenido {
-    display: flex;
-    gap: 24px;
-    padding: 24px;
-    flex: 1;
-    width: 100%;
-    max-width: 1700px;
-    margin: auto;
+    width: 95%;
+    margin: 24px auto;
 }
 
 .categorias {
-    flex: 0 0 200px;
+    width: 20%;
+}
+
+main {
+    width: 76%;
 }
 
 .categorias ul,
@@ -137,8 +127,6 @@ article,
 
 .categorias ul {
     list-style: none;
-    max-height: 70vh;
-    overflow-y: auto;
 }
 
 .categorias a {
@@ -147,43 +135,27 @@ article,
     text-decoration: none;
 }
 
-main,
-.datos-producto {
-    flex: 1;
-    min-width: 0;
-}
-
 h1,
 h2,
 h3 {
     color: white;
-    line-height: 1.3;
-    overflow-wrap: anywhere;
 }
 
 .seccion-catalogo,
-#seccion-reviews {
-    margin-bottom: 32px;
+#reviews article {
+    margin-bottom: 24px;
 }
 
 .productos article {
-    flex: 1 1 220px;
-    min-width: 0;
+    width: 31%;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    overflow-wrap: anywhere;
-}
-
-.productos img,
-.imagen-producto {
-    object-fit: contain;
-    background-color: #f4f8ff;
-    max-width: 100%;
 }
 
 .productos img {
     width: 100%;
-    height: 200px;
+    background-color: #f4f8ff;
 }
 
 .precio {
@@ -192,7 +164,6 @@ h3 {
 
 .boton-detalle {
     margin-top: auto;
-    padding: 10px;
     text-align: center;
 }
 
@@ -200,60 +171,61 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 65vh;
+    height: 80vh;
 }
 
 .cuenta {
     width: 400px;
-    max-width: 100%;
+}
+
+.campo-texto,
+.cuenta button {
+    width: 100%;
+}
+
+.campo-terminos {
+    display: flex;
+    align-items: center;
+}
+
+.campo-terminos label {
+    margin-left: 8px;
+}
+
+.detalle {
+    align-items: flex-start;
 }
 
 .imagen-producto {
-    width: 350px;
-    height: 350px;
+    width: 45%;
+    background-color: #f4f8ff;
 }
 
 .datos-producto {
-    flex-basis: 260px;
-}
-
-#reviews article {
-    margin: 16px 0;
+    width: 50%;
 }
 
 footer {
     text-align: center;
-    overflow-wrap: anywhere;
 }
 
 @media (max-width: 768px) {
-    header {
-        justify-content: center;
-    }
-
+    header,
     header nav {
-        width: 100%;
         justify-content: center;
     }
 
-    .formulario-busqueda {
-        flex-basis: 100%;
+    header nav,
+    .formulario-busqueda,
+    .categorias,
+    main,
+    .productos article,
+    .imagen-producto,
+    .datos-producto {
+        width: 100%;
     }
 
-    .contenido {
-        flex-direction: column;
-        padding: 16px;
-    }
-
-    .categorias {
-        flex-basis: auto;
-    }
-
-    .categorias ul {
-        max-height: 180px;
-    }
-
-    .productos article {
-        flex-basis: 100%;
+    .cuenta {
+        width: 95%;
     }
 }
