@@ -8,7 +8,6 @@ if (termino === null || termino === '') {
 } else if (termino.length < 3) {
     estadoResultados.innerText = 'Ingresá al menos 3 caracteres.';
 } else {
-    campoBusqueda.value = termino;
     document.querySelector('#titulo-busqueda').innerText = 'Resultados de búsqueda para: ' + termino;
     fetch('https://dummyjson.com/products/search' + queryString + '&limit=0')
         .then(function (response) {
