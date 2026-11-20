@@ -4,9 +4,9 @@ document.querySelector('#formulario-registro').addEventListener('submit', functi
     let contrasena = document.querySelector('#contrasena').value;
     let repeticion = document.querySelector('#repetir-contrasena').value;
 
-    document.querySelector('#error-repetir').innerHTML = '';
+    document.querySelector('#error-repetir').innerText = '';
     if (contrasena !== repeticion) {
-        document.querySelector('#error-repetir').innerHTML = 'Las contraseñas no coinciden';
+        document.querySelector('#error-repetir').innerText = 'Las contraseñas no coinciden';
     } else if (cuentaValida === true) {
         this.submit();
     }

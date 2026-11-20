@@ -10,23 +10,23 @@ if (Number(idProducto) > 0) {
         })
         .then(function (producto) {
             if (producto.id === undefined) {
-                estadoProducto.innerHTML = 'No se encontró el producto.';
+                estadoProducto.innerText = 'No se encontró el producto.';
                 return;
             }
 
-            document.querySelector('#nombre-producto').innerHTML = textoParaHtml(producto.title);
-            document.querySelector('#descripcion-producto').innerHTML = textoParaHtml(producto.description);
-            document.querySelector('#precio-producto').innerHTML = textoParaHtml('USD ' + producto.price);
+            document.querySelector('#nombre-producto').innerText = producto.title;
+            document.querySelector('#descripcion-producto').innerText = producto.description;
+            document.querySelector('#precio-producto').innerText = 'USD ' + producto.price;
             document.querySelector('#foto-producto').src = producto.thumbnail;
-            document.querySelector('#stock-producto').innerHTML = textoParaHtml(producto.stock + ' unidades');
+            document.querySelector('#stock-producto').innerText = producto.stock + ' unidades';
 
             let marca = 'Sin marca informada';
             if (producto.brand !== undefined && producto.brand !== null) {
                 marca = producto.brand;
             }
-            document.querySelector('#marca-producto').innerHTML = textoParaHtml(marca);
+            document.querySelector('#marca-producto').innerText = marca;
             document.querySelector('#categoria-producto').innerHTML = `<a href="category.html?categoria=${producto.category}"></a>`;
-            document.querySelector('#categoria-producto a').innerHTML = textoParaHtml(producto.category);
+            document.querySelector('#categoria-producto a').innerText = producto.category;
 
             let etiquetas = [];
             if (producto.tags !== undefined && producto.tags !== null) {
@@ -39,7 +39,7 @@ if (Number(idProducto) > 0) {
             document.querySelector('#tags-producto').innerHTML = tags;
             let textosTags = document.querySelectorAll('#tags-producto li');
             for (let i = 0; i < etiquetas.length && i < 3; i++) {
-                textosTags[i].innerHTML = textoParaHtml(etiquetas[i]);
+                textosTags[i].innerText = etiquetas[i];
             }
 
             let comentarios = [];
@@ -62,22 +62,22 @@ if (Number(idProducto) > 0) {
             let fechas = document.querySelectorAll('#reviews .fecha');
             let usuarios = document.querySelectorAll('#reviews .usuario');
             for (let i = 0; i < comentarios.length; i++) {
-                ratings[i].innerHTML = textoParaHtml('Rating: ' + comentarios[i].rating + ' / 5');
-                textos[i].innerHTML = textoParaHtml(comentarios[i].comment);
-                fechas[i].innerHTML = textoParaHtml('Fecha: ' + comentarios[i].date);
-                usuarios[i].innerHTML = textoParaHtml('Usuario: ' + comentarios[i].reviewerName);
+                ratings[i].innerText = 'Rating: ' + comentarios[i].rating + ' / 5';
+                textos[i].innerText = comentarios[i].comment;
+                fechas[i].innerText = 'Fecha: ' + comentarios[i].date;
+                usuarios[i].innerText = 'Usuario: ' + comentarios[i].reviewerName;
             }
             if (comentarios.length === 0) {
-                document.querySelector('#estado-reviews').innerHTML = 'Este producto todavía no tiene reviews.';
+                document.querySelector('#estado-reviews').innerText = 'Este producto todavía no tiene reviews.';
             }
 
-            estadoProducto.innerHTML = '';
+            estadoProducto.innerText = '';
             document.querySelector('#detalle-producto').style.display = 'block';
             document.querySelector('#seccion-reviews').style.display = 'block';
         })
         .catch(function () {
-            estadoProducto.innerHTML = 'No se pudo cargar el producto.';
+            estadoProducto.innerText = 'No se pudo cargar el producto.';
         });
 } else {
-    estadoProducto.innerHTML = 'Elegí un producto desde el catálogo.';
+    estadoProducto.innerText = 'Elegí un producto desde el catálogo.';
 }
