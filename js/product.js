@@ -32,13 +32,11 @@ if (Number(idProducto) > 0) {
             if (producto.tags !== undefined && producto.tags !== null) {
                 etiquetas = producto.tags;
             }
-            let tags = '';
+            let tags = document.querySelector('#tags-producto');
+            tags.innerHTML = '';
             for (let i = 0; i < etiquetas.length && i < 3; i++) {
-                tags += '<li></li>';
-            }
-            document.querySelector('#tags-producto').innerHTML = tags;
-            let textosTags = document.querySelectorAll('#tags-producto li');
-            for (let i = 0; i < etiquetas.length && i < 3; i++) {
+                tags.innerHTML += '<li></li>';
+                let textosTags = document.querySelectorAll('#tags-producto li');
                 textosTags[i].innerText = etiquetas[i];
             }
 
@@ -46,22 +44,20 @@ if (Number(idProducto) > 0) {
             if (producto.reviews !== undefined && producto.reviews !== null) {
                 comentarios = producto.reviews;
             }
-            let reviews = '';
+            let reviews = document.querySelector('#reviews');
+            reviews.innerHTML = '';
             for (let i = 0; i < comentarios.length; i++) {
-                reviews += `
+                reviews.innerHTML += `
                     <article>
                         <h3 class="rating"></h3>
                         <p class="comentario"></p>
                         <p class="fecha"></p>
                         <p class="usuario"></p>
                     </article>`;
-            }
-            document.querySelector('#reviews').innerHTML = reviews;
-            let ratings = document.querySelectorAll('#reviews .rating');
-            let textos = document.querySelectorAll('#reviews .comentario');
-            let fechas = document.querySelectorAll('#reviews .fecha');
-            let usuarios = document.querySelectorAll('#reviews .usuario');
-            for (let i = 0; i < comentarios.length; i++) {
+                let ratings = document.querySelectorAll('#reviews .rating');
+                let textos = document.querySelectorAll('#reviews .comentario');
+                let fechas = document.querySelectorAll('#reviews .fecha');
+                let usuarios = document.querySelectorAll('#reviews .usuario');
                 ratings[i].innerText = 'Rating: ' + comentarios[i].rating + ' / 5';
                 textos[i].innerText = comentarios[i].comment;
                 fechas[i].innerText = 'Fecha: ' + comentarios[i].date;
