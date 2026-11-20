@@ -4,21 +4,21 @@ let categoria = parametros.get('categoria');
 let estadoProductos = document.querySelector('#estado-productos');
 
 if (categoria === null || categoria === '') {
-    estadoProductos.innerText = 'Elegí una categoría del menú.';
+    estadoProductos.innerHTML = 'Elegí una categoría del menú.';
 } else {
-    document.querySelector('#titulo-categoria').innerText = 'Categoría: ' + categoria;
+    document.querySelector('#titulo-categoria').innerHTML = textoParaHtml('Categoría: ' + categoria);
     fetch('https://dummyjson.com/products/category/' + categoria + '?limit=0')
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             crearTarjetas(data.products, '#productos-categoria');
-            estadoProductos.innerText = '';
+            estadoProductos.innerHTML = '';
             if (data.products.length === 0) {
-                estadoProductos.innerText = 'No hay productos en esta categoría.';
+                estadoProductos.innerHTML = 'No hay productos en esta categoría.';
             }
         })
         .catch(function () {
-            estadoProductos.innerText = 'No se pudieron cargar los productos.';
+            estadoProductos.innerHTML = 'No se pudieron cargar los productos.';
         });
 }

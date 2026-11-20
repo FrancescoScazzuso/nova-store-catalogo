@@ -1,3 +1,20 @@
+function textoParaHtml(valor) {
+    let texto = '' + valor;
+    let resultado = '';
+    for (let i = 0; i < texto.length; i++) {
+        if (texto[i] === '&') {
+            resultado += '&amp;';
+        } else if (texto[i] === '<') {
+            resultado += '&lt;';
+        } else if (texto[i] === '>') {
+            resultado += '&gt;';
+        } else {
+            resultado += texto[i];
+        }
+    }
+    return resultado;
+}
+
 function crearTarjetas(productos, selector) {
     let tarjetas = '';
     for (let i = 0; i < productos.length; i++) {
@@ -18,9 +35,9 @@ function crearTarjetas(productos, selector) {
     let precios = document.querySelectorAll(selector + ' .precio');
     for (let i = 0; i < productos.length; i++) {
         imagenes[i].src = productos[i].thumbnail;
-        titulos[i].innerText = productos[i].title;
-        descripciones[i].innerText = productos[i].description;
-        precios[i].innerText = 'USD ' + productos[i].price;
+        titulos[i].innerHTML = textoParaHtml(productos[i].title);
+        descripciones[i].innerHTML = textoParaHtml(productos[i].description);
+        precios[i].innerHTML = textoParaHtml('USD ' + productos[i].price);
     }
 }
 
@@ -30,19 +47,19 @@ let errorBusqueda = document.querySelector('#error-busqueda');
 
 formularioBusqueda.addEventListener('submit', function (event) {
     event.preventDefault();
-    errorBusqueda.innerText = '';
+    errorBusqueda.innerHTML = '';
 
     if (campoBusqueda.value === '') {
-        errorBusqueda.innerText = 'Ingresá un término de búsqueda.';
+        errorBusqueda.innerHTML = 'Ingresá un término de búsqueda.';
     } else if (campoBusqueda.value.length < 3) {
-        errorBusqueda.innerText = 'La búsqueda debe tener al menos 3 caracteres.';
+        errorBusqueda.innerHTML = 'La búsqueda debe tener al menos 3 caracteres.';
     } else {
         this.submit();
     }
 });
 
 campoBusqueda.addEventListener('input', function () {
-    errorBusqueda.innerText = '';
+    errorBusqueda.innerHTML = '';
 });
 
 let listaCategorias = document.querySelector('.lista-categorias');
@@ -60,12 +77,12 @@ fetch('https://dummyjson.com/products/categories')
         listaCategorias.innerHTML = enlaces;
         let textos = document.querySelectorAll('.lista-categorias a');
         for (let i = 0; i < categorias.length; i++) {
-            textos[i].innerText = categorias[i].name;
+            textos[i].innerHTML = textoParaHtml(categorias[i].name);
         }
-        estadoCategorias.innerText = '';
+        estadoCategorias.innerHTML = '';
     })
     .catch(function () {
-        estadoCategorias.innerText = 'No se pudieron cargar las categorías. Volvé a intentar.';
+        estadoCategorias.innerHTML = 'No se pudieron cargar las categorías. Volvé a intentar.';
     });
 
 function validarCuenta() {
@@ -83,7 +100,7 @@ function validarCuenta() {
         errorContrasena = 'La contraseña debe tener al menos 6 caracteres';
     }
 
-    document.querySelector('#error-email').innerText = errorEmail;
-    document.querySelector('#error-contrasena').innerText = errorContrasena;
+    document.querySelector('#error-email').innerHTML = errorEmail;
+    document.querySelector('#error-contrasena').innerHTML = errorContrasena;
     return errorEmail === '' && errorContrasena === '';
 }
